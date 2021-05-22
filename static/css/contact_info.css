@@ -1,0 +1,103 @@
+/* pre-loader */
+#loading {
+    position: fixed;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: #fff url("/static/img/Coronavirus_1.gif") no-repeat center;
+    z-index: 999;
+  }
+
+  nav {
+    font-size: 23px;
+  }
+
+  /* coronameter css design start*/
+
+.wrapper {
+  width: 80%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.statistic {
+  width: 100%;
+}
+
+.box {
+  transition: 0.4s;
+  color: rgb(214, 235, 32);
+
+  margin: 10px 15px;
+  padding: 15px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+.box:hover {
+  transform: translate(0, -20px);
+  box-shadow: 0px 0px 20px 0px black;
+  background-color: #fafafa;
+  border-radius: 30px;
+  color: black;
+}
+
+.box p {
+  font-size: 3rem;
+}
+
+.wrapper .box_wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+.box_wrapper .box {
+  margin: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  text-transform: uppercase;
+}
+
+.box_wrapper .box p {
+  font-size: 2.5rem;
+}
+
+@media screen and (max-width: 800px) {
+  .box_wrapper .box {
+    width: 94%;
+  }
+
+  .wrapper {
+    width: 100%;
+    position: relative;
+    left: 0%;
+    transform: translateX(0%);
+  }
+
+  .wrapper .box_wrapper {
+    display: block;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+
+  box_wrapper .box {
+    margin: 0px;
+    margin-bottom: 10px;
+  }
+}
+.divy{
+  /* background-color: cadetblue; */
+  background-image: linear-gradient(to right, #8ed2d4, #9b15e9);
+}
+
+
+/* coronameter css design end */
+
+  /* footer css */
+.container-fluid {
+
+  color: rgb(226, 255, 220);
+}

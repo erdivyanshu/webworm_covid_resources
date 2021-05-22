@@ -1,0 +1,163 @@
+
+<!-- SignUp Modal start here -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="signupModalTitle">SignUp For Updation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action= "/signup" method='post'>
+            {% csrf_token %}
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" name="username" placeholder="Choose a unique username(lowercase & alphaneumeric)" required>
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+  </div>
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputState">State</label>
+      <input type="text" class="form-control" id="inputState" name="state">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputCity">City</label>
+      <select id="inputCity" class="form-control" name="city" required>
+        <option selected>Choose...</option>
+          <option>Allahabad</option>
+          <option>Bhopal</option>
+          <option>Patna</option>
+          <option>Kanpur</option>
+          <option>Delhi</option>
+          <option>Others</option>
+      </select>
+    </div>
+ </div>
+  <div class="form-group">
+    <label for="contactno">Contact No</label>
+    <input type="text" class="form-control" id="contactno" name="contactno" placeholder="Enter valid contact No" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com(optional)">
+  </div>
+  <div class="form-group">
+    <label for="pass1">Choose a password</label>
+    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose Your Password" required>
+  </div>
+  <div class="form-group">
+    <label for="pass2">Confirm Password</label>
+    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter your password again" required>
+  </div>
+
+
+
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+        <button type="reset" class="btn btn-outline-warning">Reset</button>
+</form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SignUp Modal end here -->
+
+
+<!-- Login Modal start here-->
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalTitle">Login To Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action='/login' method="post">
+            {% csrf_token %}
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Input UserName" required>
+  </div>
+  <div class="form-group">
+    <label for="loginpass">Enter your password </label>
+    <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Enter your password " required>
+  </div>
+
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+        <button type="reset" class="btn btn-outline-danger">Reset</button>
+</form>
+      </div>
+       <div class="modal-footer"></div>
+      </div>
+       </div>
+     </div>
+
+<!-- Login Modal end here-->
+
+
+
+<!-- Update Modal Start-->
+
+<div class="modal fade" id="update" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateTitle">Update-Entries</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action='/resources' method="post">
+             {% csrf_token %}
+  <div class="form-group">
+    <label for="Hname">Hospital</label>
+    <input type="text" class="form-control" id="Hname" name="Hname" placeholder="Enter Correct Hospital-Name" required>
+  </div>
+
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="Available-item">Available-Thing</label>
+      <select id="Available-item" class="form-control" name="category" required>
+        <option selected>Choose...</option>
+          <option>Vaccine</option>
+          <option>General-Bed</option>
+          <option>Oxygen-Bed</option>
+          <option>Bed With-Ventilator</option>
+      </select>
+     <div class="form-group col-md-4">
+      <label for="Amount">Amount</label>
+      <input type="text" class="form-control" id="Amount" name="available" required>
+    </div>
+    </div>
+ </div>
+<div class="form-group">
+    <label for="Contact">Contact</label>
+    <input type="text" class="form-control" id="Contact" name="contact" placeholder="Enter Correct Contact No. of Your Lead" required>
+  </div>
+  <div class="form-group">
+      <label for="Address">Address</label>
+      <textarea class="form-control" name="add" id="Address" rows="3"placeholder="Write Your Text" required></textarea>
+    </div>
+
+        <button class="btn btn-outline-primary">Update</button>
+
+</form>
+      </div>
+       <div class="modal-footer"></div>
+      </div>
+       </div>
+     </div>
+<!-- Update Modal end-->
+
+ {% block body %}  {% endblock body %}

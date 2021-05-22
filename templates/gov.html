@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block body %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/gov.css" />
+    <!-- Browser tab icon -->
+    <link rel="icon" type="image/png/" sizes="32X39" href="/static/img/tab.png">
+
+
+    <title>Official|COVID-19</title>
+  </head>
+  <body onload="myfunction()">
+    <!-- Pre-loader -->
+    <div id="loading">
+     
+    </div>
+
+<!-- navbar design start here -->
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home"><img src="/static/img/tab2.png" height="50" width="50"> COVID-19</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link " href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Resources
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/resources">Plasma/Oxygen/Bed</a>
+            
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/contact_info">Government-Info</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Precaution
+                  </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/gov">Gov/WHO</a>
+                    <a class="dropdown-item" href="/vaccine">Vaccine</a>
+                    <a class="dropdown-item" href="/plasma">Plasma</a>
+                </div>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact-us</a>
+              </li>
+          </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mx-2">
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown1" role="button" data-toggle="dropdown"> Welcome! {{request.user}}</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout">Logout</a>
+
+        </div>
+      </li>
+      </ul>
+      </div>
+          {% else %}
+          <div class="mx-2">
+         <button type=" button" class="btn btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
+         <button type=" button" class="btn btn-light" data-toggle="modal" data-target="#signupModal">SignUp</button>
+        </div>
+            {% endif %}
+        </div>
+      </nav>
+
+  <!-- navbar design end here -->   
+<!--    alert message start-->
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Hey {{user}}!:</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+
+<!-- alert message end-->
+
+
+  <div class="container p-3">
+    <div class="h2 text-center">
+      Coronavirus disease (COVID-19) advice for the public
+    </div><hr>
+    <h3> When and how to use masks</h3>
+    <p>
+      Masks should be used as part of a comprehensive strategy of measures to suppress transmission and save lives; the
+      use of a mask alone is not sufficient to provide an adequate level of protection against COVID-19.<br><br>
+
+      If COVID-19 is spreading in your community, stay safe by taking some simple precautions, such as physical
+      distancing, wearing a mask, keeping rooms well ventilated, avoiding crowds, cleaning your hands, and coughing into
+      a bent elbow or tissue. <br><br>
+      <strong>Make wearing a mask a normal part of being around other people. The appropriate use, storage and cleaning
+        or disposal of masks are essential to make them as effective as possible.</strong>
+    </p><br>
+    <p>
+      Here are the basics of
+      <a href="https://www.youtube.com/watch?v=ciUniZGD4tY" target="_blank">how to wear a mask</a>
+    </p>
+
+    <ul>
+      <li>Clean your hands before you put your mask on, as well as before and after you take it off, and after you touch
+        it at any time.</li>
+      <li>Make sure it covers both your nose, mouth and chin.
+      </li>
+      <li>When you take off a mask, store it in a clean plastic bag, and every day either wash it if it’s a fabric mask,
+        or dispose of a medical mask in a trash bin.</li>
+      <li>Don’t use masks with valves.</li>
+    </ul>
+    <p><em>For specifics on what type of mask to wear and when, watch this</em> <a
+        href="https://www.youtube.com/watch?v=esM_ePHn0aw" target="_blank"><em>video</em></a></p>
+
+
+    <h3>Stay 6 feet away from others</h3>
+    <ul>
+      <li><strong>Inside your home:</strong> Avoid close contact with people who are sick.</li>
+      <ul style="list-style:none">
+        <li style="font-weight: 500">- If possible, maintain 6 feet between the person who is sick and other household
+          members.</li>
+      </ul>
+    </ul>
+    <ul>
+      <li><strong>Outside your home:</strong> Put 6 feet of distance between yourself and people who don’t live in your
+        household.</li>
+      <ul style="list-style:none">
+        <li style="font-weight: 500"> - Remember that some people without symptoms may be able to spread virus.</li>
+        <li style="font-weight: 500"> - Stay at least 6 feet (about 2 arm lengths) from other people.</li>
+        <li style="font-weight: 500"> - Keeping distance from others is especially important for people who are at
+          higher risk of getting very sick.</li>
+      </ul>
+    </ul>
+
+    <h3>
+      Get Vaccinated
+    </h3>
+    <ul>
+      <li>
+        Authorized COVID-19 vaccines can help protect you from COVID-19.
+      </li>
+      <li>
+        Once you are fully vaccinated, you may be able to start doing some things that you had stopped doing because of
+        the pandemic.
+      </li>
+    </ul>
+
+
+    <h3>Avoid crowds and poorly ventilated spaces</h3>
+    <ul>
+      <li>Being in crowds like in restaurants, bars, fitness centers, or movie theaters puts you at higher risk for
+        COVID-19.</li>
+      <li>Avoid indoor spaces that do not offer fresh air from the outdoors as much as possible.</li>
+      <li>If indoors, bring in fresh air by opening windows and doors, if possible.</li>
+    </ul>
+
+
+    <h3>Wash your hands often</h3>
+    <ul>
+      <li>Wash your hands often with soap and water for at least 20 seconds especially after you have been in a public
+        place, or after blowing your nose, coughing, or sneezing.</li>
+      <li>It’s especially important to wash:</li>
+      <ul style="list-style:none">
+        <li style="font-weight: 500">- Before eating or preparing food</li>
+        <li style="font-weight: 500">- Before touching your face</li>
+        <li style="font-weight: 500">- After using the restroom</li>
+        <li style="font-weight: 500">- After leaving a public place</li>
+        <li style="font-weight: 500">- After blowing your nose, coughing, or sneezing</li>
+        <li style="font-weight: 500">- After handling your mask</li>
+        <li style="font-weight: 500">- After caring for someone sick</li>
+        <li style="font-weight: 500">- After touching animals or pets </li>
+      </ul>
+      <li>If soap and water are not readily available,<strong> use a hand sanitizer that contains at least 60%
+          alcohol.</strong>Cover all surfaces of your hands and rub them together until they feel dry.</li>
+      <li><strong>Avoid touching your eyes, nose, and mouth</strong> with unwashed hands.</li>
+    </ul>
+
+    <h3>Cover coughs and sneezes</h3>
+    <ul>
+      <li><strong>If you are wearing a mask:</strong> You can cough or sneeze into your mask. Put on a new, clean mask
+        as soon as possible and wash your hands.</li>
+      <li><strong>If you are not wearing a mask: </strong></li>
+      <ul style="list-style: none">
+        <li style="font-weight: 500">
+          - Always cover your mouth and nose with a tissue when you cough or sneeze, or use the inside of your elbow and
+          do not spit.
+        </li>
+        <li style="font-weight: 500">
+          - Throw used tissues in the trash.
+        </li>
+      </ul>
+      </li>
+
+        <li>
+          Immediately wash your hands with<em> soap and water for at least 20 seconds.</em> If soap and water are not readily
+          available, clean your hands with <em>a hand sanitizer that contains at least 60% alcohol.</em>
+        </li>
+      </li>
+    </ul>
+
+
+    <h3>Clean and disinfect</h3>
+    <ul>
+      <li>
+        Clean high touch surfaces daily. This includes tables, doorknobs, light switches, countertops, handles, desks, phones, keyboards, toilets, faucets, and sinks.
+      </li>
+      <li>
+        <strong>If someone is sick or has tested positive for COVID-19, disinfect frequently touched surfaces.</strong>
+      </li>
+      <ul style="list-style: none">
+      <li>- If surfaces are dirty, clean them using <strong>detergent or soap and water prior to disinfection.</strong></li>
+      </ul>
+    </ul>
+
+
+    <h3>Monitor your health daily</h3>
+    <ul>
+      <li>
+        <strong>Be alert for symptoms.</strong> Watch for fever, cough, shortness of breath, or other<a href="/symptoms" target="_blank"> symptoms of COVID-19.</a>
+        <ul style="list-style:none">
+        <li>
+          - Especially important if you are running <em>essential errands</em>, going into the office or workplace, and in settings where it may be difficult to keep<em> a physical distance of 6 feet.</em>
+        </li>
+        </ul>
+        <li><strong>Take your temperature </strong>if symptoms develop.</li>
+        <ul style="list-style: none">
+        <li>
+          - Don’t take your temperature within 30 minutes of <em> exercising or after taking medications that could lower your temperature, like acetaminophen.</em>
+        </li>
+        </ul>
+
+      </li>
+    </ul>
+<div class="ayu1 text-center">
+    <img src="/static/img/WHO.jfif" class="img-fluid" width="40%" height="1em">
+
+      <h3>World Health Organization</h3>
+  <button type="button" class="btn btn-warning"><a href="https://www.who.int" target="_blank"><b>Redirect to W.H.O.</b> </a></button></div>
+
+    </div>
+
+  <!-- precaution ends here -->
+
+<!-- Footer design -->
+ 
+<footer class="container-fluid shadow-lg p-3 mb-10 bg-dark">
+  <p class="float-right">
+   <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg></a></p>
+    <!-- <a href="#">Back to top</a></p> -->
+  <p class="text-center">Copyright &copy; 2021 WebWorm Technical Team. All Right Reserved.</p>
+</footer>
+
+<!-- Footer design end-->
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
+ 
+    <!-- Pre loader script -->
+    <script>
+        var preloader = document.getElementById('loading');
+        function myfunction(){
+            preloader.style.display = 'none';
+        }
+      </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+   
+  </body>
+</html>
+
+{% endblock body %}

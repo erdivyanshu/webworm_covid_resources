@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block body %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+    <!-- Browser tab icon -->
+    <link rel="icon" type="image/png/" sizes="32X39" href="/static/img/tab.png">
+
+      <link rel="stylesheet" href="/static/css/contact_info.css" />
+
+
+    <title>Gov-Helpline|Covid-19</title>
+  </head>
+  <body onload="myfunction(),fetch()">
+    <!-- Pre-loader -->
+    <div class="Pre-loader"id="loading">
+
+    </div>
+
+ <!-- navbar design start here -->
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home"><img src="/static/img/tab2.png" height="50" width="50"> COVID-19</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Resources
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/resources">Plasma/Oxygen/Bed</a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/contact_info">Government-Info</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Precaution
+                  </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/gov">Gov/WHO</a>
+                  <a class="dropdown-item" href="/vaccine">Vaccine</a>
+                  <a class="dropdown-item" href="/plasma">Plasma</a>
+                </div>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact-us</a>
+              </li>
+          </ul>
+
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav mx-2">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown1" role="button" data-toggle="dropdown" style="color: gold;font-family: 'Montserrat', sans-serif; font-weight: bold"> Welcome! {{request.user}}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout">Logout</a>
+
+        </div>
+      </li>
+      </ul>
+      </div>
+          {% else %}
+          <div class="mx-2">
+         <button type=" button" class="btn btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
+         <button type=" button" class="btn btn-light" data-toggle="modal" data-target="#signupModal">SignUp</button>
+        </div>
+            {% endif %}
+        </div>
+      </nav>
+
+   <!-- navbar end here -->
+
+<!--    alert message start-->
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Hey {{user}}!:</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+
+<!-- alert message end-->
+
+<!--    Contact-Table Start Here-->
+
+<table class="table table-bordered table-hover text-center">
+    <div class="card card-body p-3 mb-2 text-center">
+        <h2>Government Helpline</h2></div>
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Sr.No</th>
+      <th scope="col">State Name</th>
+      <th scope="col">Helpline No</th>
+      <th scope="col">Any Other Lead</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Andaman & Nicobar Islands</td>
+      <td>03192-232102</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Andhra Pradesh</td>
+      <td>104</td>
+      <td>-</td>
+    <tr>
+      <th scope="row">3</th>
+      <td>Arunachal Pradesh</td>
+      <td>9436055743</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">4</th>
+      <td>Assam</td>
+      <td>6913347770</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">5</th>
+      <td>Bihar</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">6</th>
+      <td>Chandigarh</td>
+      <td>9779558282</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">7</th>
+      <td>Chattisgarh</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">8</th>
+      <td>Dadra and Nagar Haveli and Daman </td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">9</th>
+      <td>Delhi</td>
+      <td>011-22307145</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">10</th>
+      <td>Goa</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">11</th>
+      <td>Gujarat</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">12</th>
+      <td>Haryana</td>
+      <td>8558893911</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">13</th>
+      <td>Himachal Pradesh</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">14</th>
+      <td>Jammu & Kashmir</td>
+      <td>01912520982 , 0194-2440283</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">15</th>
+      <td>Jharkand</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">16</th>
+      <td>Karnataka</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">17</th>
+      <td>Kerala</td>
+      <td>0471-2552056</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">18</th>
+      <td>Ladakh</td>
+      <td>1982256462</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">19</th>
+      <td>Lakshadweep</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">20</th>
+      <td>Madhya Pradesh</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">21</th>
+      <td>Maharashtra</td>
+      <td>020-26127394</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">22</th>
+      <td>Manipur</td>
+      <td>3852411668</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">23</th>
+      <td>Meghalaya</td>
+      <td>108</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">24</th>
+      <td>Mizoram</td>
+      <td>102</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">25</th>
+      <td>Nagaland</td>
+      <td>7005539653</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">26</th>
+      <td>Odisha</td>
+      <td>9439994859</td>
+      <td>-</td>
+    </tr>
+  <tr>
+      <th scope="row">27</th>
+      <td>Puducherry</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">28</th>
+      <td>Punjab</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">29</th>
+      <td>Rajasthan</td>
+      <td>0141-2225624</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">30</th>
+      <td>Sikkim</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">31</th>
+      <td>Tamil Nadu</td>
+      <td>044-29510500</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">32</th>
+      <td>Telangana</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">33</th>
+      <td>Tripura</td>
+      <td>0381-2315879</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">34</th>
+      <td>Uttar Pradesh</td>
+      <td>18001805145</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">35</th>
+      <td>Uttarakhand</td>
+      <td>104</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th scope="row">36</th>
+      <td>West Bengal</td>
+      <td>1800313444222 , 03323412600</td>
+      <td>-</td>
+    </tr>
+
+  </tbody>
+</table>
+
+ <!--    Contact-Table End Here-->
+
+
+
+<!-- coronameter start here -->
+<div class="container p-3 mb-2 divy">
+  <div class="wrapper">
+    <h1 style="text-align: center;color: white;padding: 0px;">COVID-19 LIVE TRACKER(INDIA)
+        <hr><span id="today" style="font-size: 15px;"></span>
+    </h1>
+    <br>
+    <div class="statistic">
+        <div class="box_wrapper" >
+          <div class="box" style="color: red" >
+            <h2>Total Cases</h2><br>
+            <p id="total_cases" style="font-weight: bold;"></p>
+          </div>
+          <div class="box" style="color:blue" >
+                <h2>Active Cases</h2><br>
+                <p id="active_cases"> </p>
+            </div>
+
+            <div class="box" style="color: lime" >
+                <h2>Total Recovery</h2><br>
+                <p id="total_recovered"> </p>
+            </div>
+
+            <div class="box" style="color: hotpink">
+                <h2>Today's Cases</h2><br>
+                <p id="new_case"> </p>
+            </div>
+
+            <div class="box" style="color: red" >
+                <h2>Total Death</h2><br>
+                <p id="total_death"> </p>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- corona meter end here -->
+
+
+
+<!-- Footer design -->
+
+<footer class="container-fluid shadow-lg p-3 bg-dark">
+  <p class="float-right">
+   <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg></a></p>
+    <!-- <a href="#">Back to top</a></p> -->
+  <p class="text-center">Copyright &copy; 2021 WebWorm Technical Team. All Right Reserved.</p>
+</footer>
+
+<!-- Footer design end-->
+
+
+    <!-- Pre loader script -->
+    <script>
+        var preloader = document.getElementById('loading');
+        function myfunction(){
+            preloader.style.display = 'none';
+        }
+      </script>
+
+
+
+    <!-- coronameter JavaScript -->
+    <script>
+
+      let total_cases = document.getElementById("total_cases");
+      let active_cases  = document.getElementById("active_cases");
+      let total_recovered = document.getElementById("total_recovered");
+      let new_case = document.getElementById("new_case");
+      let total_death = document.getElementById("total_death");
+
+
+      // Fetching the Data from the server
+
+
+      //Fetching the World Data
+      fetch("https://api.covid19india.org/data.json", {
+          "method": "GET"
+      })
+      .then(response => response.json().then( data => {
+
+         total_cases.innerHTML = data['statewise'][0]['confirmed'];
+          active_cases.innerHTML = data['statewise'][0]['active'];
+          total_recovered.innerHTML = data['statewise'][0]['recovered'];
+          new_case.innerHTML = data['statewise'][0]['deltaconfirmed'];
+          total_death.innerHTML = data['statewise'][0]['deaths'];
+
+
+
+      }));</script>
+
+<!-- coronameter JavaScript end-->
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+{% endblock body %}

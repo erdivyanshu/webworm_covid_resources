@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block body %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/static/css/plasma.css" />
+    <!-- Browser tab icon -->
+    <link rel="icon" type="image/png/" sizes="32X39" href="/static/img/tab.png">
+
+
+    <title>Plasma|COVID-19</title>
+  </head>
+  <body onload="myfunction()">
+    <!-- Pre-loader -->
+    <div id="loading">
+     
+    </div>
+
+<!-- navbar design start here-->
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/home"><img src="/static/img/tab2.png" height="50" width="50"> COVID-19</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link " href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Resources
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/resources">Plasma/Oxygen/Bed</a>
+            
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/contact_info">Government-Info</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Precaution
+                  </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/gov">Gov/WHO</a>
+                    <a class="dropdown-item" href="/vaccine">Vaccine</a>
+                    <a class="dropdown-item" href="/plasma">Plasma</a>
+                </div>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact-us</a>
+              </li>
+          </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mx-2">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown1" role="button" data-toggle="dropdown"> Welcome! {{request.user}}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout">Logout</a>
+
+        </div>
+      </li>
+      </ul>
+      </div>
+          {% else %}
+          <div class="mx-2">
+         <button type=" button" class="btn btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
+         <button type=" button" class="btn btn-light" data-toggle="modal" data-target="#signupModal">SignUp</button>
+        </div>
+            {% endif %}
+        </div>
+      </nav>
+
+ <!-- navbar design end here-->
+
+<!--    alert message start-->
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Hey {{user}}!:</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+
+<!-- alert message end-->
+
+
+    <!-- Plasma starts here -->
+
+    <div class="container">
+        <h2>What is Plasma</h2>
+        <p>Plasma is the clear, straw-colored liquid portion of blood that remains after red blood cells, white blood cells, platelets and other cellular components are removed. It is the single largest component of human blood, comprising about 55 percent, and contains water, salts, enzymes, antibodies and other proteins.</p>
+
+        <div class="ayu1">
+        <ul>
+          <li>Composed of 90% water, plasma is a transporting medium for cells and a variety of substances vital to the human body.</li>
+          <li>Plasma carries out a variety of functions in the body, including clotting blood, fighting diseases and other critical functions.</li>
+          <li>Source plasma is plasma that is collected from healthy, voluntary donors through a process called plasmapheresis and is used exclusively for further manufacturing into final therapies (fractionation). Source plasma donors may be compensated for their time and effort.</li>
+        </ul>
+        </div>
+
+<!--        <div class="container-fluid">-->
+<!--          <div class="ayushi">-->
+<!--            <img src="/static/img/Plasma.jpg" alt="Plasma donation center">-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="container plasma-wrapper">
+            <img src="/static/img/Plasma.jpg" class="rounded plasma" alt="Plasma donation center"width="500" height="400">
+        </div>
+
+        <h2> What is plasma therapy?</h2>
+        <p>Recovered plasma is collected through whole blood donation in which plasma is separated from its cellular components and this Plasma from the recovered COVID-19 patients’ blood is infused in the blood of currently suffering COVID-19 patient.</p>
+
+        <h2>Who Needs Plasma Therapies?</h2>
+        <p>Plasma-derived therapies replace missing or deficient proteins that allow individuals to lead healthy and more productive lives. The patients that rely on these therapies generally require regular infusions or injections throughout their lives.<br><br>
+
+          The diseases and conditions treated by plasma protein therapies are considered rare diseases because they affect a relatively small percent of the population; most are genetic, chronic conditions.</p>
+
+         <h2>Overview</h2>
+         <p style="margin:0px 0px 50px 0px">
+            Plasma protein therapies (PPTs) treat a variety of medical conditions. Many of these are rare, chronic and often genetic conditions that are life threatening.<br><br>
+
+            PPTs replace missing or deficient proteins which are obtained from human plasma. Patients generally require regular infusions or injections of these therapies for the duration of their lives.<br><br>
+
+            PPTs are considered sole-source biologic products because no generic or chemical substitutions exist.
+          </p>
+        <hr>
+          <i class="bi bi-exclamation-triangle-fill-"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="rgb(201, 4, 4)" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg><h3 style="font-size: 35px; display: inline;"> Plasma therapy is no longer part of Covid-19 treatment
+          </h3><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="rgb(201, 4, 4)" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg></i>
+
+         <p style="margin:50px 0px 80px 0px">
+            An Indian Council of Medical Research (ICMR) official said the task force <em>revised</em> the Clinical Guidance for Management of Adult Covid-19 Patients and <em>dropped convalescent plasma (off label)</em><br><br>
+            The decision to remove it from the guidelines comes in the backdrop of some clinicians and scientist writing to Principal Scientific Advisor K VijayRaghavan cautioning against the <em>irrational and non-scientific use</em> of convalescent plasma for Covid-19 in the country.<br><br>
+            The current research evidence unanimously indicates that there is no benifit offered by convalescent plasma for treatment of Covid-19.
+          </p>
+      </div>
+
+<!-- Plasma ends here -->
+
+
+
+<!-- Footer design -->
+ 
+<footer class="container-fluid shadow-lg p-3 mb-10 bg-dark">
+  <p class="float-right">
+   <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg></a></p>
+    <!-- <a href="#">Back to top</a></p> -->
+  <p class="text-center">Copyright &copy; 2021 WebWorm Technical Team. All Right Reserved.</p>
+</footer>
+
+<!-- Footer design end-->
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
+ 
+    <!-- Pre loader script -->
+    <script>
+        var preloader = document.getElementById('loading');
+        function myfunction(){
+            preloader.style.display = 'none';
+        }
+      </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+   
+  </body>
+</html>
+{% endblock body %}

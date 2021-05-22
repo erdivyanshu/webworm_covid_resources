@@ -1,0 +1,23 @@
+/* pre-loader */
+#loading {
+    position: fixed;
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background: #fff url("/static/img/Coronavirus_1.gif") no-repeat center;
+    z-index: 999;
+  }
+
+  nav {
+    font-size: 23px;
+  }
+  
+  
+  
+  
+ /* footer css */
+.container-fluid {
+ 
+  color: rgb(226, 255, 220);
+}

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+{% extends 'base.html' %}
+{% block body %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+    <!-- Browser tab icon -->
+    <link rel="icon" type="image/png/" sizes="32X39" href="/static/img/tab.png">
+
+      <link rel="stylesheet" href="/static/css/main.css" />
+    <!-- video added as background -->
+    <video src="static/b2.mp4" autoplay loop playsinline muted></video>
+
+    <title>COVID-19</title>
+  </head>
+  <body onload="myfunction(),fetch()">
+    <!-- Pre-loader -->
+    <div class="Pre-loader"id="loading">
+
+    </div>
+
+ <!-- navbar design start here -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-nil">
+        <a class="navbar-brand" href="/home"><img src="/static/img/tab2.png" height="50" width="50"> COVID-19</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link " href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Resources
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/resources">Plasma/Oxygen/Bed</a>
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/contact_info">Government-Info</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Precaution
+                  </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/gov">Gov/WHO</a>
+                  <a class="dropdown-item" href="/vaccine">Vaccine</a>
+                  <a class="dropdown-item" href="/plasma">Plasma</a>
+                </div>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact-us</a>
+              </li>
+          </ul>
+        {% if user.is_authenticated %}
+            <ul class="navbar-nav mx-2">
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown1" role="button" data-toggle="dropdown" style="color: gold;font-family: 'Montserrat', sans-serif; font-weight: bold"> Welcome! {{request.user}}</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/logout">Logout</a>
+
+        </div>
+      </li>
+      </ul>
+      </div>
+          {% else %}
+          <div class="mx-2">
+         <button type=" button" class="btn btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
+         <button type=" button" class="btn btn-light" data-toggle="modal" data-target="#signupModal">SignUp</button>
+        </div>
+            {% endif %}
+        </div>
+      </nav>
+
+   <!-- navbar end here -->
+
+<!--    alert message start-->
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>Hey {{user}}!:</strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+
+<!-- alert message end-->
+
+      <blockquote class="blockquote text-center">
+          <p class="h1 text-white">
+            CORONA-PANDEMIC<br>
+            RESOURCES
+          </p>
+        <p class="mb-0 text-white">"Ultimately, the greatest lesson that COVID-19 can teach humanity is
+            that we are all in this together."</p>
+        <footer class="blockquote-footer text-white"><cite title="Source Title"> Kiran Mazumdar-Shaw</cite></footer>
+      </blockquote>
+
+
+
+<!-- crousel image with link start here -->
+<div class="container text-center"> 
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="https://selfregistration.cowin.gov.in/" target="_blank"><img src="/static/img/1c.jpg" class="a-block w-50" alt="Vaccine" ></a>
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/2c.jpg" class="a-block w-50" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/img/3c.jpg" class="a-block w-50" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>
+<!-- crousel image with link end here -->
+
+         <!-- feedback start here    -->
+<p>
+  <button class="btn btn-warning btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Feedback
+  </button>
+</p>
+<div class="container">
+<div class="collapse" id="collapseExample">
+  <div class="card card-body"> 
+   <form action="/home" method="post">
+     {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputEmail1"><h5>Email address</h5></label>
+        <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Enter Your Email" aria-describedby="emailHelp">
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+        </div>
+        <textarea class="form-control" name="text" aria-label="With textarea" placeholder="Input Your Text"></textarea>
+      </div>
+
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+</div>
+</div>
+    <!-- feedback end -->
+
+<!-- coronameter start here -->
+<div class="container p-3 mb-2 divy">
+  <div class="wrapper">
+    <h1 style="text-align: center;color: white;padding: 0px;">COVID-19 LIVE TRACKER(INDIA)
+        <hr><span id="today" style="font-size: 15px;"></span>
+    </h1>
+    <br>
+    <div class="statistic">
+        <div class="box_wrapper" >
+          <div class="box" style="color: red" >
+            <h2>Total Cases</h2><br>
+            <p id="total_cases" style="font-weight: bold;"></p>
+          </div>
+          <div class="box" style="color:blue" >
+                <h2>Active Cases</h2><br>
+                <p id="active_cases"> </p>
+            </div>
+
+            <div class="box" style="color: lime" >
+                <h2>Total Recovery</h2><br>
+                <p id="total_recovered"> </p>
+            </div>
+
+            <div class="box" style="color: hotpink">
+                <h2>Today's Cases</h2><br>
+                <p id="new_case"> </p>
+            </div>
+
+            <div class="box" style="color: red" >
+                <h2>Total Death</h2><br>
+                <p id="total_death"> </p>
+            </div>
+        </div>
+    </div>
+  </div> 
+</div>  
+    
+<!-- corona meter end here -->
+
+
+<!-- Team details start-->
+
+  <div class="container-fluid shadow p-3 mb-0 bg-dark rounded"> 
+    <div class="h1 text-center">Team-Webworm</div><hr>
+     <div class="row">
+       <div class="col-lg-3 text-center">
+       <a href="https://github.com/erdivyanshu" target="_blank"><img  src="/static/img/div.jpg"class="bd-placeholder-img rounded-circle" width="100" height="100" /></a>
+         <h4>Divyanshu Yadav</h4>
+         <p>(Team Leader)</p>  
+       </div><!-- /.col-lg-4 -->
+                 <div class="col-lg-3 text-center">
+                   <a href="https://github.com/riyaa10" target="_blank"><img src="/static/img/riya.jpg"class="bd-placeholder-img rounded-circle" width="100" height="100" /></a>
+                   <h4>Riya Singh</h4>  
+                 </div><!-- /.col-lg-3 -->
+                 <div class="col-lg-3 text-center">
+                   <a href="https://github.com/ayushias0203" target="_blank"><img src="/static/img/ayu.jpeg" class="bd-placeholder-img rounded-circle" width="100" height="100" /></a>
+                   <h4>Ayushi Shukla</h4> 
+                 </div><!-- /.col-lg-4 -->
+                 <div class="col-lg-3 text-center">
+                   <a href="https://github.com/amandev02" target="_blank"><img src="/static/img/aman1.jpeg"class="bd-placeholder-img rounded-circle" width="100" height="100" /></a>
+                     <h4>Aman Raj</h4>        
+                   </div><!-- /.col-lg-4 -->
+         
+               </div>    
+             </div>
+
+      <!-- team detail end here -->
+
+
+
+
+<!-- Footer design -->
+ 
+<footer class="container-fluid shadow-lg p-3 bg-dark">
+  <p class="float-right">
+   <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg></a></p>
+    <!-- <a href="#">Back to top</a></p> -->
+  <p class="text-center">Copyright &copy; 2021 WebWorm Technical Team. All Right Reserved.</p>
+</footer>
+
+<!-- Footer design end-->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper)
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script> -->
+ 
+    <!-- Pre loader script -->
+    <script>
+        var preloader = document.getElementById('loading');
+        function myfunction(){
+            preloader.style.display = 'none';
+        }
+      </script>
+
+
+
+    <!-- coronameter JavaScript -->
+    <script>
+
+      let total_cases = document.getElementById("total_cases");
+      let active_cases  = document.getElementById("active_cases");
+      let total_recovered = document.getElementById("total_recovered");
+      let new_case = document.getElementById("new_case");
+      let total_death = document.getElementById("total_death");
+      
+      
+      // Fetching the Data from the server
+      
+      
+      //Fetching the World Data
+      fetch("https://api.covid19india.org/data.json", {
+          "method": "GET"
+      })
+      .then(response => response.json().then( data => {
+      
+         total_cases.innerHTML = data['statewise'][0]['confirmed'];
+          active_cases.innerHTML = data['statewise'][0]['active'];
+          total_recovered.innerHTML = data['statewise'][0]['recovered'];
+          new_case.innerHTML = data['statewise'][0]['deltaconfirmed'];
+          total_death.innerHTML = data['statewise'][0]['deaths'];
+      
+      
+      
+      }));</script>
+
+<!-- coronameter JavaScript end-->
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+  </body>
+</html>
+{% endblock body %}
