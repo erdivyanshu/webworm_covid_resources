@@ -2,6 +2,13 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 
+#Django admin customization
+
+admin.site.site_header = "Covid-Resources Portal"
+admin.site.site_title = "Covid-19"
+admin.site.index_title = "Welcome!In Covid-Resources Portal"
+
+
 urlpatterns = [
     path('home', views.home, name="home"),
     path('contact', views.contact, name="contact"),

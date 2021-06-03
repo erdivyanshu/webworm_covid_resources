@@ -125,7 +125,8 @@ nav {
 }
 
 .divy{
-  /* background-color: cadetblue; */
-  background-image: linear-gradient(to right, #8ed2d4, #9b15e9);
-}
+  /*background-color: cadetblue; #9b15e9,#8ed2d4 */
+  background-image: linear-gradient(to right,#bd7fe0,#195b5e);
+  /* background-image: linear-gradient(to right,#bd7fe0,#195b5e);*/
+} 
 
